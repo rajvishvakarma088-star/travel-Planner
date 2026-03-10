@@ -1,47 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'HomePage.dart';
+import 'homepage.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(const TravelApp());
+
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  Future<bool> checkLogin() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool("isLoggedIn") ?? false;
-  }
+class TravelApp extends StatelessWidget {
+  const TravelApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
+      title: "Smart Travel Planner",
       debugShowCheckedModeBanner: false,
-
-      home: FutureBuilder(
-        future: checkLogin(),
-
-        builder: (context, snapshot) {
-
-          if (!snapshot.hasData) {
-            return const Scaffold(
-              body: Center(child: CircularProgressIndicator()),
-            );
-          }
-
-          if (snapshot.data == true) {
-            return const HomePage();
-          } else {
-            return const LoginScreen();
-          }
-
-        },
+      theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.blue,
       ),
+      home: const LoginScreen(),
     );
   }
 }
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -61,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const MyApp()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
 
     } else {
@@ -157,17 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: double.infinity,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () async {
-
-  final prefs = await SharedPreferences.getInstance();
-
-  await prefs.setBool("isLoggedIn", true);
-
-  Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(builder: (context) => const HomePage()),
-  );
-},
+                        onPressed: login,
                         child: const Text("Login"),
                       ),
                     ),
@@ -248,7 +221,7 @@ class SignupScreen extends StatelessWidget {
                     ),
 
                     const SizedBox(height: 10),
-// Raj code
+
                     const Text(
                       "Create Account",
                       style: TextStyle(

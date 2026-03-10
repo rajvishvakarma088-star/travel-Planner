@@ -16,8 +16,53 @@ class PlaceDetailScreen extends StatelessWidget {
     required this.city,
   });
 
+
+  List<String> getItinerary() {
+
+  if (name.toLowerCase().contains("beach")) {
+    return [
+      "Day 1: Relax at the beach",
+      "Day 2: Water sports and sunset view",
+      "Day 3: Beachside cafes and shopping"
+    ];
+  }
+
+  if (city.toLowerCase() == "manali") {
+    return [
+      "Day 1: Explore Manali Mall Road",
+      "Day 2: Visit Solang Valley",
+      "Day 3: Rohtang Pass adventure"
+    ];
+  }
+
+  if (city.toLowerCase() == "agra") {
+    return [
+      "Day 1: Visit Taj Mahal",
+      "Day 2: Explore Agra Fort",
+      "Day 3: Local markets and food"
+    ];
+  }
+
+  if (city.toLowerCase() == "paris") {
+    return [
+      "Day 1: Eiffel Tower and Seine cruise",
+      "Day 2: Louvre Museum",
+      "Day 3: Shopping and cafes"
+    ];
+  }
+
+  return [
+    "Day 1: Arrival and city exploration",
+    "Day 2: Visit famous attractions",
+    "Day 3: Local food and shopping"
+  ];
+}
+
   @override
   Widget build(BuildContext context) {
+
+    final itinerary = getItinerary();
+
     return Scaffold(
 
       appBar: AppBar(
@@ -147,43 +192,108 @@ class PlaceDetailScreen extends StatelessWidget {
 )
 ),
 
-                  const SizedBox(height: 25),
+       const SizedBox(height: 25),
+
+const Text(
+  "Travel Itinerary",
+  style: TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  ),
+),
+
+const SizedBox(height: 10),
+
+Container(
+  padding: const EdgeInsets.all(16),
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(12),
+    color: Colors.green.withValues(alpha: 0.1),
+  ),
+
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: itinerary.map((day) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Row(
+          children: [
+            const Icon(Icons.check_circle, color: Colors.green),
+            const SizedBox(width: 10),
+            Expanded(child: Text(day)),
+          ],
+        ),
+      );
+    }).toList(),
+  ),
+),
+
+const SizedBox(height: 25),
 
                   // Save Trip Button
-                  SizedBox(
-                    width: double.infinity,
+                 Row(
+  children: [
 
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        backgroundColor: Colors.blue,
-                      ),
+    // Wishlist Button
+    Expanded(
+      child: ElevatedButton.icon(
+        icon: const Icon(Icons.favorite_border),
+        label: const Text("Wishlist"),
 
-                      onPressed: () async {
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color.fromARGB(255, 248, 154, 185),
+          padding: const EdgeInsets.symmetric(vertical: 14),
+        ),
 
-                         await TripService.saveTrip({
-                            "name": name,
-                            "image": imageUrl,
-                            "city": city,
-                          });
+        onPressed: () async {
 
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Trip saved successfully!"),
-                          ),
-                        );
+          await TripService.saveWishlist({
+  "name": name,
+  "image": imageUrl,
+  "city": city,
+});
 
-                      },
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Added to Wishlist ❤️"),
+            ),
+          );
+        },
+      ),
+    ),
 
-                      child: const Text(
-                        "Save to My Trips",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
+    const SizedBox(width: 10),
+
+    // Save Trip Button
+    Expanded(
+      child: ElevatedButton.icon(
+        icon: const Icon(Icons.map),
+        label: const Text("Save Trip"),
+
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color.fromARGB(255, 159, 206, 245),
+          padding: const EdgeInsets.symmetric(vertical: 14),
+        ),
+
+        onPressed: () async {
+
+          await TripService.saveTrip({
+            "name": name,
+            "image": imageUrl,
+            "city": city,
+          });
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Trip saved successfully!"),
+            ),
+          );
+        },
+      ),
+    ),
+
+  ],
+),
 
                   const SizedBox(height: 20),
 

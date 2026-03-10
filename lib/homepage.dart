@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'place_list_screen.dart';
-import 'saved_trips_screen.dart';
+import 'wishlist.dart';
+import 'trip_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'profile_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,6 +21,10 @@ final List<String> pageTitles = [
 
 class _HomePageState extends State<HomePage> {
 
+
+
+
+
   int selectedIndex = 0;
 
   @override
@@ -28,13 +35,10 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
   centerTitle: true,
 
-  title: Text(
-    pageTitles[selectedIndex],
-    style: const TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-    ),
-  ),
+   title: SvgPicture.asset(
+  "assets/finalLogo.svg",
+  height: 35,
+),
 
   actions: const [
     Padding(
@@ -64,11 +68,13 @@ class _HomePageState extends State<HomePage> {
   ),
 ),
 
-      body: selectedIndex == 0
-          ? homeContent()
-          : selectedIndex == 2
-              ? const SavedTripsScreen()
-              : const Center(child: Text("Coming Soon")),
+     body: selectedIndex == 0
+    ? homeContent()
+    : selectedIndex == 1
+        ? const TripScreen()
+        : selectedIndex == 2
+            ? const WishlistScreen()
+            : const ProfileScreen(),
 
       bottomNavigationBar: NavigationBar(
 
@@ -83,7 +89,7 @@ class _HomePageState extends State<HomePage> {
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: "Home"),
           NavigationDestination(icon: Icon(Icons.map), label: "Trips"),
-          NavigationDestination(icon: Icon(Icons.favorite), label: "Saved"),
+          NavigationDestination(icon: Icon(Icons.favorite), label: "Wishlist"),
           NavigationDestination(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),
