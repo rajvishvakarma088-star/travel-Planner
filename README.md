@@ -43,7 +43,7 @@ https://drive.google.com/file/d/1-fPyhDL0kxY7S_Si_Lm5IkAYrGOCepBq/view?usp=shari
 
 ## Getting Started
 
-git clone https://github.com/rajvishvakarma088-star/travel-Planner.git
+git  https://github.com/rajvishvakarma088-star/travel-Planner.git
 
 
 ## Author
