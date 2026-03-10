@@ -1,17 +1,53 @@
-# flutter_application_2
+#  TripMate (Travel Planner App) 
 
-A new Flutter project.
+A Flutter-based mobile application that helps users plan trips easily by checking weather conditions, organizing travel details, and exploring destinations.
+
+---
+
+##  Features
+
+- 🌤 Weather information for destinations
+- 🗺 Trip planning
+- 📍 Location based travel planning
+- 🎨 Clean and simple UI
+
+---
+
+##  Tech Stack
+
+- Flutter
+- Dart
+- Weather API
+- REST API
+
+---
+
+## Screenshots
+
+| Home Screen | login Screen |
+|-------------|---------------|
+| ![Home](screenshots/homepage.jpeg) | ![login](screenshots/loginscreen.jpeg) |
+
+| wishlist screen | Destination Search | Trip Details |
+|----------|-------------------|--------------|
+| ![wishlist](screenshots/wishlist.jpeg) | ![places](screenshots/places.jpeg) | ![profile](screenshots/profile.jpeg) |
+
+![Weather](screenshots/weather.jpeg)
+
+
+##  Download APK
+
+**APK Link:**  
+
+https://drive.google.com/file/d/1-fPyhDL0kxY7S_Si_Lm5IkAYrGOCepBq/view?usp=sharing
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+git clone https://github.com/rajvishvakarma088-star/travel-Planner.git
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Author
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Raj Vishvakarma  
+B.Tech AI & Robotics  
+Flutter / Android Developer
